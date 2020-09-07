@@ -7,7 +7,6 @@ import me.bingorufus.chatitemdisplay.util.VersionComparer;
 import me.bingorufus.chatitemdisplay.util.VersionComparer.Status;
 import me.bingorufus.chatitemdisplay.util.updater.UpdateChecker;
 import me.bingorufus.chatitemdisplay.util.updater.UpdateDownloader;
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class ChatItemDisplayBungee extends Plugin {
@@ -16,7 +15,8 @@ public class ChatItemDisplayBungee extends Plugin {
 		downloadUpdate();
 		getProxy().registerChannel("chatitemdisplay:out");
 		getProxy().registerChannel("chatitemdisplay:in");
-		BungeeCord.getInstance().getPluginManager().registerListener(this, new DisplayReceiver());
+
+		getProxy().getPluginManager().registerListener(this, new DisplayReceiver());
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class ChatItemDisplayBungee extends Plugin {
 	}
 
 	public void downloadUpdate() {
-		BungeeCord.getInstance().getScheduler().runAsync(this, () -> {
+		getProxy().getScheduler().runAsync(this, () -> {
 			String error = new UpdateChecker(77177).getLatestVersion(ver -> {
 				Status s = new VersionComparer().isRecent(this.getDescription().getVersion(), ver);
 

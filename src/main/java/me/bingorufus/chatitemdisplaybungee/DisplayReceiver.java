@@ -3,7 +3,7 @@ package me.bingorufus.chatitemdisplaybungee;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import net.md_5.bungee.UserConnection;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -19,13 +19,13 @@ public class DisplayReceiver implements Listener {
 		ByteArrayDataInput in = ByteStreams.newDataInput(e.getData());
 
 
-		if (!(e.getReceiver() instanceof UserConnection))
+		if (!(e.getReceiver() instanceof ProxiedPlayer))
 			return;
 
-		UserConnection rec = (UserConnection) e.getReceiver();
+		ProxiedPlayer rec = (ProxiedPlayer) e.getReceiver();
 		String subChannel = in.readUTF();
 		if (subChannel.equalsIgnoreCase("BungeePing")) {
-			new DisplaySender().ping((Server) rec.getServer());
+			new DisplaySender().ping(rec.getServer());
 			return;
 		}
 		Server receiver = (Server) rec.getServer();

@@ -3,10 +3,16 @@ package me.bingorufus.chatitemdisplaybungee;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.Server;
 
 public class DisplaySender {
+	private ProxyServer proxyServer;
+
+	public DisplaySender(final ProxyServer proxyServer) {
+		this.proxyServer = proxyServer;
+	}
+
 	public void ping(Server from) {
 		ByteArrayDataOutput out = ByteStreams.newDataOutput();
 		out.writeUTF("BungeePing");
@@ -27,7 +33,7 @@ public class DisplaySender {
 
 
 
-		BungeeCord.getInstance().getServers().values().forEach(server -> {
+		proxyServer.getServers().values().forEach(server -> {
 			if (server.equals(from.getInfo()))
 				return;
 
