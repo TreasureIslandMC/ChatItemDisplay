@@ -6,12 +6,9 @@ import com.google.common.io.ByteStreams;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.Server;
 
-public class DisplaySender {
-	private ProxyServer proxyServer;
+import java.net.ProxySelector;
 
-	public DisplaySender(final ProxyServer proxyServer) {
-		this.proxyServer = proxyServer;
-	}
+public class DisplaySender {
 
 	public void ping(Server from) {
 		ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -33,7 +30,7 @@ public class DisplaySender {
 
 
 
-		proxyServer.getServers().values().forEach(server -> {
+		ProxyServer.getInstance().getServers().values().forEach(server -> {
 			if (server.equals(from.getInfo()))
 				return;
 

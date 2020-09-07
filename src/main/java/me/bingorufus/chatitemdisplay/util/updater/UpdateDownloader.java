@@ -12,7 +12,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
 
 public class UpdateDownloader {
 	String version;
@@ -40,7 +40,7 @@ public class UpdateDownloader {
 				}
 				newFileName = newFile.getName();
 
-				BungeeCord.getInstance().getLogger().info(newFileName);
+				ProxyServer.getInstance().getLogger().info(newFileName);
 				downloadPath.close();
 				return null;
 

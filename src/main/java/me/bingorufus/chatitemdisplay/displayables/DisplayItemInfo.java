@@ -59,7 +59,6 @@ public class DisplayItemInfo implements DisplayInfo {
 		return ItemName;
 	}
 
-	@SuppressWarnings("deprecation")
 	public TextComponent baseHover() {
 		String color = "";
 
