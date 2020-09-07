@@ -1,2 +1,4 @@
 
 src/me/bingorufus/chatitemdisplay/util/iteminfo/ItemStackTranslator.java
+*.iml
+.idea
